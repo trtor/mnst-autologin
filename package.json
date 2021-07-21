@@ -1,0 +1,47 @@
+{
+  "name": "autologin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "installclean": "rm -rf node_modules/ && rm package-lock.json && npm install",
+    "installprod": "rm -rf node_modules/ && npm install --only=production",
+    "check": "prettier --check \"{src,test}/**/*.{js,jsx,json,md,ts,tsx,html,css}\"",
+    "format": "prettier --write \"{src,test}/**/*.{js,jsx,json,md,ts,tsx,html,css}\"",
+    "dev": "nodemon",
+    "build": "rm -rf dist/ && tsc -p .",
+    "start": "npm run build && node dist/index.js",
+    "startprod": "node dist/index.js",
+    "test": "jest --forceExit",
+    "testwatch": "jest --watchAll --detectOpenHandles --passWithNoTests",
+    "testwatchcov": "jest --watchAll --coverage --passWithNoTests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trtor/mnst-autologin.git"
+  },
+  "author": "tor",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/trtor/mnst-autologin/issues"
+  },
+  "homepage": "https://github.com/trtor/mnst-autologin#readme",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "cron": "^1.8.2",
+    "dotenv": "^10.0.0",
+    "qs": "^6.10.1"
+  },
+  "devDependencies": {
+    "@types/cron": "^1.7.3",
+    "@types/jest": "^26.0.24",
+    "@types/node": "^16.4.0",
+    "@types/qs": "^6.9.7",
+    "jest": "^27.0.6",
+    "nodemon": "^2.0.12",
+    "prettier": "^2.3.2",
+    "ts-jest": "^27.0.4",
+    "ts-node": "^10.1.0",
+    "typescript": "^4.3.5"
+  }
+}

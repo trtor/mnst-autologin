@@ -11,7 +11,7 @@ export async function fetchURL(url: string): Promise<{
       method: "GET",
       url,
       maxRedirects: 0,
-      timeout: 1000,
+      timeout: 500,
     });
     return {
       statusCode: res.status,

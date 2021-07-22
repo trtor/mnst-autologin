@@ -19,6 +19,7 @@ export async function requestLogin({
       headers: {
         Host: loginHost,
       },
+      timeout: 1000,
     });
 
     const res: AxiosResponse<string> = await axios({
@@ -39,6 +40,7 @@ export async function requestLogin({
       }),
       xsrfCookieName: undefined,
       xsrfHeaderName: undefined,
+      timeout: 500,
     });
     if (/authentication failed/i.test(res.data)) {
       return { code: "AUTH_FAIL" };
@@ -49,9 +51,9 @@ export async function requestLogin({
   } catch (e) {
     if (axios.isAxiosError(e)) {
       const error: AxiosError<string> = e;
-      console.error("requestLogin(), ", error.response?.status);
+      // console.error("requestLogin(), ", error.response?.status);
       if (e.code === "ECONNRESET") {
-        console.error("Connection loss");
+        // console.error("Connection loss");
         return { code: "REJECT" };
       }
     }

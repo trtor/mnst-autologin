@@ -11,9 +11,9 @@ export async function requestKeepAlive(magic: string) {
       },
       timeout: 1000,
     });
-    console.log(res.status);
-    console.log(res.headers);
-    console.log(res.data);
+    // console.log(res.status);
+    // console.log(res.headers);
+    // console.log(res.data);
 
     if (/keepalive/i.test(res.data)) return { code: "OK", magic };
     else return { code: "AUTH_FAIL" };

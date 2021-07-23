@@ -10,14 +10,14 @@ async function mainLogin2() {
   let keepAlive: NodeJS.Timer | null = null;
 
   setInterval(async () => {
-    // console.log("Start Interval");
+    // Start Interval
     const isInternetCon = await checkInternet();
-    console.log(isInternetCon ? "Con OK" : "Con loss");
+    console.log(isInternetCon ? "Internet ✔" : "Internet loss");
     if (!isInternetCon) {
       const res2 = await autoLogin();
       if (res2.code === "OK") {
         if (keepAlive !== null) {
-          console.log("clear interval");
+          console.log("Clear interval");
           clearInterval(keepAlive);
         }
         const magic = res2.magic;
@@ -25,14 +25,13 @@ async function mainLogin2() {
 
         keepAlive = setInterval(async () => {
           if (magic) await requestKeepAlive(magic);
-          console.log("Send Keep alive", magic);
+          console.log("Send keepalive", magic);
         }, 0.5 * HOUR_ms); //  2.8 * HOUR_ms
       } else {
-        console.log("Login res", res2.code);
+        console.log("Login status", res2.code);
       }
-    } else {
-      console.log("Internet OK => do nothing");
     }
+    // Internet OK => do nothing
   }, intervalCheckInternet_ms);
 }
 

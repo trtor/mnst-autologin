@@ -9,8 +9,15 @@ const intervalCheckInternet_ms = 1000 * 60 * 5; // every 1 min
 async function mainLogin2() {
   let keepAlive: NodeJS.Timer | null = null;
 
+  // First attemp when run script
+  const res1 = await autoLogin();
+  if (res1.code === "OK") {
+    const magic = res1.magic;
+    console.log("Login success, ", magic);
+  }
+
+  // Start Interval
   setInterval(async () => {
-    // Start Interval
     const isInternetCon = await checkInternet();
     console.log(isInternetCon ? "Internet ✔" : "Internet loss");
     if (!isInternetCon) {
